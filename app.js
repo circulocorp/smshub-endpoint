@@ -38,7 +38,12 @@ app.post('/', function(req, res){
 	    logger.info("Receiving SMS delivery",{raw: {src: notify}, app: 'smshub'});
 	    var status = notify["ns1:deliveryStatus"][0]["deliveryStatus"][0];
 	    var address = notify["ns1:deliveryStatus"][0]["address"][0];
-	    logger.info("Receiving SMS delivery",{address: address, status: status, app: 'smshub'});
+	    var correlator = notify["'ns1:correlator"][0];
+	    if(status == "DeliveryImpossible"){
+	    	logger.error("Receiving SMS delivery",{correlator: correlator, address: address, status: status, app: 'smshub'});
+	    }else{
+	    	logger.info("Receiving SMS delivery",{correlator: correlator, address: address, status: status, app: 'smshub'});
+	    }
 		res.status(200).send("{'Status': 'OK'}");
 	}else{
 		logger.error("Request Denied",{status_code: 500,app: 'smshub'});
