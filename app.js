@@ -32,7 +32,7 @@ app.get('/', function(request, response){
 });
 
 app.post('/', function(req, res){
-	logger.debug("Receiving SMS delivery",{raw:{src: req.body}, app: 'smshub'});
+	logger.info("Receiving SMS delivery",{raw:{src: req.body}, app: 'smshub'});
 	if(req.body["soapenv:Envelope"]){
 	    var notify = req.body["soapenv:Envelope"]["soapenv:Body"][0]["ns1:notifySmsDeliveryReceipt"][0];
 	    var status = notify["ns1:deliveryStatus"][0];
