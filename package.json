@@ -1,6 +1,6 @@
 {
   "name": "smshub-endpoint",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Simple WS for SMS delivery messages",
   "main": "app.js",
   "scripts": {
