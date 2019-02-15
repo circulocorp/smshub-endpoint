@@ -36,6 +36,7 @@ app.post('/', function(req, res){
 	if(req.body["soapenv:Envelope"]){
 	    var notify = req.body["soapenv:Envelope"]["soapenv:Body"][0]["ns1:notifySmsDeliveryReceipt"][0];
 	    logger.info("Receiving SMS delivery",{raw: {src: notify}, app: 'smshub'});
+	    console.log(notify);
 	    var status = notify["ns1:deliveryStatus"][0];
 	    var address = notify["ns1:address"][0];
 	    logger.info("Receiving SMS delivery",{address: address, status: status, app: 'smshub'});
