@@ -38,7 +38,7 @@ app.post('/', function(req, res){
 	    logger.info("Receiving SMS delivery",{raw: {src: notify}, app: 'smshub'});
 	    var status = notify["ns1:deliveryStatus"][0]["deliveryStatus"][0];
 	    var address = notify["ns1:deliveryStatus"][0]["address"][0];
-	    var correlator = notify["'ns1:correlator"][0];
+	    var correlator = notify["ns1:correlator"][0];
 	    if(status == "DeliveryImpossible"){
 	    	logger.error("Receiving SMS delivery",{correlator: correlator, address: address, status: status, app: 'smshub'});
 	    }else{
