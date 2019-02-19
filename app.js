@@ -28,7 +28,7 @@ module.exports = app.listen(port);
 
 app.get('/', function(request, response){
 	logger.info("Simple GET request", {raw:{src: request.body}, app: 'smshub'});
-	response.status(200).send("{'Health': 'Ok'}");
+	response.send("{'Health': 'Ok'}");
 });
 
 app.post('/', function(req, res){
@@ -44,9 +44,9 @@ app.post('/', function(req, res){
 	    }else{
 	    	logger.info("Receiving SMS delivery",{correlator: correlator, address: address, status: status, app: 'smshub'});
 	    }
-		res.status(200).send("{'Status': 'OK'}");
+		res.send("{'Status': 'OK'}");
 	}else{
 		logger.error("Request Denied",{status_code: 500,app: 'smshub'});
-		res.status(500).send("{'Status': 'ERROR'}");
+		res.send("{'Status': 'ERROR'}");
 	}
 });
