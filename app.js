@@ -26,12 +26,12 @@ app.use(bodyParser.xml());
 var port = process.env.PORT || 5500;
 module.exports = app.listen(port);
 
-app.get('/', function(request, response){
+router.get('/', function(request, response){
 	logger.info("Simple GET request", {raw:{src: request.body}, app: 'smshub'});
 	response.send("{'Health': 'Ok'}");
 });
 
-app.post('/', function(req, res){
+router.post('/', function(req, res){
 	logger.info("Receiving SMS delivery",{raw:{src: req.body}, app: 'smshub'});
 	if(req.body["soapenv:Envelope"]){
 	    var notify = req.body["soapenv:Envelope"]["soapenv:Body"][0]["ns1:notifySmsDeliveryReceipt"][0];
@@ -50,3 +50,7 @@ app.post('/', function(req, res){
 		res.send("{'Status': 'ERROR'}");
 	}
 });
+
+
+
+app.use('/', router);
