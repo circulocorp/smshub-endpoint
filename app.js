@@ -15,7 +15,7 @@ var logger = log.createLogger({
     json()
   ),
   transports: [
-    new log.transports.File({ filename: 'logs/smshub-endpoint.log'})
+    new log.transports.Console({})
   ]
 });
 
